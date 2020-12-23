@@ -65,7 +65,7 @@ def create_img(color, h, w):
     data[:, :, 1] = g
     data[:, :, 2] = b
     img = Image.fromarray(data.astype("uint8")).convert("RGB")
-    img.save("img/{}.png".format(color))
+    img.save("img/{}.png".format(color[1:]))
 
 
 for name, paints in artists.items():
@@ -76,7 +76,7 @@ for name, paints in artists.items():
         assert len(p) == 5
         for color in p:
             create_img(color, 50, 100)
-        imgs = ["img/{}.png".format(color) for color in p]
+        imgs = ["img/{}.png".format(color[1:]) for color in p]
         paint_md += paint_template.format(paint_name=paint["name"], paint_link=paint["link"],
                                           c1=p[0], c2=p[1], c3=p[2], c4=p[3], c5=p[4],
                                           i1=imgs[0], i2=imgs[1], i3=imgs[2], i4=imgs[3], i5=imgs[4])
